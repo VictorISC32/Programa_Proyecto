@@ -11,12 +11,12 @@ namespace Programa_Proyecto
     {
         static void Main(string[] args)
         {
-            double[,] MatrizFinal = null; // Esta variable almacena la última matriz calculada
-            string OperacionFinal = "";   // Esta variable almacena la última operación realizada
+            double[,] MatrizFinal = null; 
+            string OperacionFinal = "";   
 
             while (true)
             {
-                // Aqui muestra el menú principal
+               
                 Console.Clear();
                 Console.WriteLine("Bienvenido a este programa que realiza Operaciones de Matrices\n\n");
                 Console.WriteLine("Este es tu Menu de Opciones:\n");
@@ -28,19 +28,17 @@ namespace Programa_Proyecto
                 Console.Write("Elige una opción del Menù (1-5) : ");
                 string opcion = Console.ReadLine();
 
-                if (opcion == "5") break; // con esta opcion sales del programa
-
+                if (opcion == "5") break; 
                 if (opcion == "1" || opcion == "2" || opcion == "3")
                 {
-                    // Se obtienen las dimensiones de las matrices
+                    
                     int filas, columnas;
                     (filas, columnas) = DimensionesAobtener();
 
-                    // Se obtienen los valores de las matrices 1 Y 2
+                    
                     double[,] matriz1 = ObtenerMatriz(filas, columnas, "A");
                     double[,] matriz2 = ObtenerMatriz(filas, columnas, "B");
 
-                    // Realiza la operación seleccionada del menu 
                     if (opcion == "1")
                     {
                         MatrizFinal = SumarMatrices(matriz1, matriz2);
@@ -57,7 +55,7 @@ namespace Programa_Proyecto
                         OperacionFinal = "Multiplicación";
                     }
 
-                    // Muestra el resultado y lo guarda en un archivo de texto 
+                  
                     MostrarMatriz(MatrizFinal, "Resultado");
                     GuardarMatrizEnArchivoDeTexto(MatrizFinal, "ResultadoMatriz.txt");
                     Console.WriteLine("Resultado guardado en 'ResultadoMatriz.txt'. Presiona cualquier tecla para continuar...");
@@ -65,7 +63,7 @@ namespace Programa_Proyecto
                 }
                 else if (opcion == "4" && MatrizFinal != null)
                 {
-                    // muestra la operacion ya hecha 
+                  
                     Console.WriteLine($"Última operación realizada: {OperacionFinal}");
                     MostrarMatriz(MatrizFinal, "Última Matriz Guardada");
                     Console.WriteLine("Presiona cualquier tecla para continuar...");
@@ -73,7 +71,7 @@ namespace Programa_Proyecto
                 }
                 else if (opcion == "4")
                 {
-                    // Si no hay ninguna operacion guardada te mostrara el mensaje (no hay operaciones guardadas)
+                    
                     Console.WriteLine("No hay operaciones guardadas.");
                     Console.WriteLine("Presiona cualquier tecla para reeintentar");
                     Console.ReadKey();
@@ -83,7 +81,7 @@ namespace Programa_Proyecto
                 Console.WriteLine("¡Gracias por hacer uso del programa! Adiós.");
             }
         }
-        // Con esta funcion se obtiene las dimensiones de una matriz
+       
         static (int, int) DimensionesAobtener()
         {
             int filas = 0, columnas = 0;
@@ -108,7 +106,7 @@ namespace Programa_Proyecto
             return (filas, columnas);
         }
 
-        //  Con esta funcion se obtiene los valor de una matriz
+        
         static double[,] ObtenerMatriz(int filas, int columnas, string nombre)
         {
             double[,] matriz = new double[filas, columnas];
@@ -136,7 +134,7 @@ namespace Programa_Proyecto
             return matriz;
         }
 
-        // con esta funcion vas a poder sumar las matrices
+        
         static double[,] SumarMatrices(double[,] a, double[,] b)
         {
             int filas = a.GetLength(0);
@@ -154,7 +152,7 @@ namespace Programa_Proyecto
             return resultado;
         }
 
-        // Con esta funcion vas a poder restar las matrices
+  
         static double[,] RestarMatrices(double[,] a, double[,] b)
         {
             int filas = a.GetLength(0);
@@ -172,7 +170,7 @@ namespace Programa_Proyecto
             return resultado;
         }
 
-        // Con esta funcion vas a poder multiplicar las matrices
+        
         static double[,] MultiplicarMatrices(double[,] a, double[,] b)
         {
             int filas = a.GetLength(0);
@@ -195,7 +193,7 @@ namespace Programa_Proyecto
             return resultado;
         }
 
-        // Función para imprimir una matriz en pantalla
+        
         static void MostrarMatriz(double[,] matriz, string titulo)
         {
             Console.WriteLine($"\n{titulo}:");
@@ -212,7 +210,7 @@ namespace Programa_Proyecto
             }
         }
 
-        // Función para guardar la matriz en un archivo de texto
+        
         static void GuardarMatrizEnArchivoDeTexto(double[,] matriz, string nombreArchivo)
         {
             using (StreamWriter archivo = new StreamWriter(nombreArchivo))
